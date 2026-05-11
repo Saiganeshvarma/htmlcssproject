@@ -1,13 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LuxuryCart - Premium Ecommerce</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#f5f7fb;
+      color:#111;
+    }
+
+    header{
+      width:100%;
+      background:#111827;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
+
+    .logo{
+      color:#fff;
+      font-size:30px;
+      font-weight:700;
+    }
+
+    .logo span{
+      color:#38bdf8;
+    }
+
+    nav{
+      display:flex;
+      gap:30px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#fff;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#38bdf8;
+    }
+
+    .icons{
+      display:flex;
+      gap:15px;
+      color:#fff;
+      font-size:22px;
+    }
+
+    .hero{
+      width:100%;
+      min-height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),
+      url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      padding:0 8%;
+      color:#fff;
+    }
+
+    .hero-content{
+      max-width:600px;
+    }
+
+    .hero h1{
+      font-size:65px;
+      line-height:1.1;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:30px;
+      color:#ddd;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border:none;
+      background:#38bdf8;
+      color:#fff;
+      font-size:17px;
+      border-radius:50px;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn:hover{
+      background:#0ea5e9;
+      transform:translateY(-3px);
+    }
+
+    .section-title{
+      text-align:center;
+      margin:70px 0 40px;
+      font-size:40px;
+      color:#111827;
+    }
+
+    .products{
+      width:84%;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+      padding-bottom:60px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      transition:0.4s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:20px;
+    }
+
+    .category{
+      color:#38bdf8;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .card h3{
+      margin:10px 0;
+      font-size:22px;
+    }
+
+    .price{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:20px;
+    }
+
+    .price h4{
+      font-size:24px;
+      color:#111827;
+    }
+
+    .cart-btn{
+      padding:10px 18px;
+      border:none;
+      background:#111827;
+      color:#fff;
+      border-radius:30px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .cart-btn:hover{
+      background:#38bdf8;
+    }
+
+    .banner{
+      width:84%;
+      margin:40px auto;
+      background:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+      url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      padding:80px 50px;
+      border-radius:25px;
+      color:#fff;
+      text-align:center;
+    }
+
+    .banner h2{
+      font-size:50px;
+      margin-bottom:20px;
+    }
+
+    .banner p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    .features{
+      width:84%;
+      margin:70px auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .feature-box{
+      background:#fff;
+      padding:35px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .feature-box h3{
+      margin:15px 0;
+    }
+
+    footer{
+      background:#111827;
+      color:#fff;
+      padding:60px 8%;
+      margin-top:50px;
+    }
+
+    .footer-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:40px;
+    }
+
+    footer h3{
+      margin-bottom:20px;
+    }
+
+    footer p{
+      color:#ccc;
+      line-height:1.8;
+    }
+
+    .socials{
+      display:flex;
+      gap:15px;
+      margin-top:20px;
+    }
+
+    .socials div{
+      width:40px;
+      height:40px;
+      background:#38bdf8;
+      border-radius:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+    }
+
+    .copyright{
+      text-align:center;
+      margin-top:50px;
+      color:#aaa;
+    }
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:45px;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .banner h2{
+        font-size:35px;
+      }
+
+    }
+
+  </style>
 </head>
 <body>
-    <h1>hello world iam the h1 tag</h1>
-    <h2>hello world iam the h2 tag</h2>
-    
+
+  <header>
+    <div class="logo">Luxury<span>Cart</span></div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">Collections</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <div class="icons">
+      🛒
+      ❤️
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Premium Shopping Experience</h1>
+      <p>
+        Discover luxury fashion, modern gadgets, and premium accessories
+        designed for your lifestyle.
+      </p>
+
+      <a href="#" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <h1 class="section-title">Featured Products</h1>
+
+  <section class="products">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <p class="category">Sneakers</p>
+        <h3>Premium Nike Shoes</h3>
+
+        <div class="price">
+          <h4>$120</h4>
+          <button class="cart-btn">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <p class="category">Fashion</p>
+        <h3>Luxury T-Shirt</h3>
+
+        <div class="price">
+          <h4>$75</h4>
+          <button class="cart-btn">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <p class="category">Electronics</p>
+        <h3>iPhone Premium</h3>
+
+        <div class="price">
+          <h4>$999</h4>
+          <button class="cart-btn">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <p class="category">Accessories</p>
+        <h3>Wireless Headphones</h3>
+
+        <div class="price">
+          <h4>$210</h4>
+          <button class="cart-btn">Add</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="banner">
+    <h2>Summer Mega Sale</h2>
+
+    <p>
+      Get exclusive offers on premium products with up to 50% off.
+      Shop your favorite brands before the sale ends.
+    </p>
+
+    <a href="#" class="btn">Explore Deals</a>
+  </section>
+
+  <h1 class="section-title">Why Choose Us</h1>
+
+  <section class="features">
+
+    <div class="feature-box">
+      <h3>🚚 Fast Delivery</h3>
+      <p>Lightning fast shipping across the world.</p>
+    </div>
+
+    <div class="feature-box">
+      <h3>💳 Secure Payments</h3>
+      <p>100% secure payment gateway protection.</p>
+    </div>
+
+    <div class="feature-box">
+      <h3>⭐ Premium Quality</h3>
+      <p>Only top quality verified products.</p>
+    </div>
+
+    <div class="feature-box">
+      <h3>📞 24/7 Support</h3>
+      <p>Dedicated customer support anytime.</p>
+    </div>
+
+  </section>
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div>
+        <h3>LuxuryCart</h3>
+
+        <p>
+          A premium ecommerce platform delivering world-class shopping
+          experience with luxury products.
+        </p>
+
+        <div class="socials">
+          <div>F</div>
+          <div>I</div>
+          <div>X</div>
+        </div>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+
+        <p>Home</p>
+        <p>Products</p>
+        <p>Collections</p>
+        <p>Contact</p>
+      </div>
+
+      <div>
+        <h3>Support</h3>
+
+        <p>Help Center</p>
+        <p>Privacy Policy</p>
+        <p>Terms & Conditions</p>
+        <p>Returns</p>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 LuxuryCart. All Rights Reserved.
+    </div>
+
+  </footer>
+
 </body>
 </html>
